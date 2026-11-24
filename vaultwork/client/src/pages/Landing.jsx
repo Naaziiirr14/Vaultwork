@@ -1,12 +1,71 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import PageWrap from "../components/PageWrap.jsx";
-import Guilloche from "../components/Guilloche.jsx";
 import EscrowTrack from "../components/EscrowTrack.jsx";
 import Stamp from "../components/Stamp.jsx";
 import Money from "../components/Money.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+
+// Right side shield design (inga thaan irukku, separate file venaam)
+function HeroArt() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        right: "max(-120px, calc((100% - 1140px) / 2 - 90px))",
+        top: "50%",
+        marginTop: "-322px",
+        color: "var(--green)",
+        opacity: 0.18,
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    >
+      <motion.svg
+        viewBox="0 0 400 460"
+        width="560"
+        height="644"
+        fill="none"
+        stroke="currentColor"
+        animate={{ y: [0, -14, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {/* shield */}
+        <path
+          d="M200 20 L360 80 V220 C360 320 290 400 200 440 C110 400 40 320 40 220 V80 Z"
+          strokeWidth="3"
+        />
+        <path
+          d="M200 56 L328 104 V220 C328 300 272 366 200 400 C128 366 72 300 72 220 V104 Z"
+          strokeWidth="1.5"
+        />
+        {/* tick */}
+        <path d="M130 225 L180 275 L274 170" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+        {/* floating diamonds */}
+        <motion.rect
+          x="10" y="300" width="34" height="34" rx="4" strokeWidth="2.5"
+          style={{ originX: "27px", originY: "317px" }}
+          animate={{ rotate: [45, 90, 45] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.rect
+          x="350" y="360" width="26" height="26" rx="4" strokeWidth="2.5"
+          style={{ originX: "363px", originY: "373px" }}
+          animate={{ rotate: [45, 0, 45] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.rect
+          x="330" y="10" width="20" height="20" rx="3" strokeWidth="2.5"
+          style={{ originX: "340px", originY: "20px" }}
+          animate={{ rotate: [45, 135, 45] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.svg>
+    </div>
+  );
+}
 
 const HEADLINE = ["Pay", "when", "the", "work", "is", "done,", "not", "before."];
 
@@ -105,15 +164,11 @@ function DemoSlip() {
 
 export default function Landing() {
   const { user } = useAuth();
-  const { scrollY } = useScroll();
-  const rotate = useTransform(scrollY, [0, 900], [0, 70]);
 
   return (
     <PageWrap className="landing">
       <div className="hero-bleed">
-        <motion.div className="hero-rosette" style={{ rotate }} aria-hidden="true">
-          <Guilloche size={760} petals={48} />
-        </motion.div>
+        <HeroArt />
 
         <section className="hero wrap">
         <div className="hero-copy">
