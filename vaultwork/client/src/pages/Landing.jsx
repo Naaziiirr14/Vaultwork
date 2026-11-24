@@ -12,7 +12,7 @@ const HEADLINE = ["Pay", "when", "the", "work", "is", "done,", "not", "before."]
 
 const DEMO = {
   pending: {
-    note: "The client and freelancer agreed on ₹8,000 for this milestone. No money has moved yet.",
+    note: "The client and freelancer agreed on ₹10,000 for this milestone. No money has moved yet.",
     actions: [{ label: "Client funds the milestone", to: "funded", primary: true }],
   },
   funded: {
@@ -80,7 +80,7 @@ function DemoSlip() {
           <span className="ms-index">Milestone 1 of 2</span>
           <h3>Landing page design</h3>
         </div>
-        <Money value={8000} className="amount" />
+        <Money value={10000} className="amount" />
       </div>
       <EscrowTrack status={status} />
       <p className="demo-note" aria-live="polite">{step.note}</p>
@@ -149,7 +149,7 @@ export default function Landing() {
               <Link to="/dashboard" className="btn btn-primary btn-lg">Open your dashboard</Link>
             ) : (
               <>
-                <Link to="/register?role=client" className="btn btn-primary btn-lg">Hire a freelancer</Link>
+                <Link to="/register?role=client" className="btn btn-green btn-lg">Hire a freelancer</Link>
                 <Link to="/register?role=freelancer" className="btn btn-ghost btn-lg">Find paid work</Link>
               </>
             )}
@@ -188,7 +188,7 @@ export default function Landing() {
       </section>
 
       <footer className="foot">
-        <p>Vaultwork project built with MongoDB, Express, React and Node. Payments run in Razorpay test mode, so no real money moves.</p>
+        <p>Vaultwork is a final year project built with MongoDB, Express, React and Node. Payments run in Razorpay test mode, so no real money moves.</p>
       </footer>
       </div>
     </PageWrap>
